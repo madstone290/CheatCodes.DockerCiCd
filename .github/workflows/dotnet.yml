@@ -45,7 +45,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: .
-        file: ./Dockerfile
+        file: ./BookWeb/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-cicd-bookweb:latest
       
