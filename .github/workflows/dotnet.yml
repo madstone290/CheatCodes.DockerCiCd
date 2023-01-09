@@ -3,6 +3,11 @@
 
 name: .NET
 
+env:
+  SECRETS_DIR:  BookWeb/Secrets
+  # secret files
+  HIDDEN_BOOK_LIST_JSON: HiddenBookList.json
+
 on:
   push:
     branches: [ "main" ]
@@ -17,6 +22,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+      
+    - name: Create secrets
+      run: |
+        mkdir -p ${{ env.SECRETS_DIR }}
+        echo '${{ secrets.HIDDEN_BOOK_LIST }}' > ${{ env.SECRETS_DIR }}/${{ env.HIDDEN_BOOK_LIST_JSON }}
       
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
