@@ -1,5 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddJsonFile("Secrets/HiddenBookList.json");
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

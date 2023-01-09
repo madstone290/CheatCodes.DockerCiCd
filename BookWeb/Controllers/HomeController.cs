@@ -8,13 +8,19 @@ namespace BookWeb.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly List<Book> _hiddenBooks = new();
+
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
+
+            var bookList = configuration.GetSection("HiddenBookList").Get<List<Book>>();
+            _hiddenBooks.AddRange(bookList);
         }
 
         public IActionResult Index()
         {
+            ViewBag.HiddenBooks = _hiddenBooks;
             return View();
         }
 

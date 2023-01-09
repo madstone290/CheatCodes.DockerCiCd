@@ -3,7 +3,21 @@
 }
 
 <h1>This is book app</h1>
+<h2>Public book list</h2>
 <ul>
     <li>Algorithms for competitive programming</li>
     <li>What makes me act?</li>
 </ul>
+
+@if (ViewBag.HiddenBooks != null && 0 < ViewBag.HiddenBooks.Count){
+<h2>Hidden book list</h2>
+<ul>
+        @foreach (var book in ViewBag.HiddenBooks){
+            <li>@(book.Name) : @(book.Page)</li>
+        }
+</ul>
+}
+else
+{
+    <h2>No hidden books</h2>
+}
